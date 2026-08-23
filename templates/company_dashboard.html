@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Company Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('login') }}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+    <h1>Company Dashboard</h1>
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+
+            <h2>➕ Post Job</h2>
+
+            <p>
+                Create a new job vacancy.
+            </p>
+
+            <a href="{{ url_for('post_job') }}">
+                Post Job
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>🎓 Post Internship</h2>
+
+            <p>
+                Create a new internship.
+            </p>
+
+            <a href="{{ url_for('post_internship') }}">
+        <button>Post Internship</button>
+    </a>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>📩 Applications</h2>
+
+            <p>
+                View student applications.
+            </p>
+
+            <a href="{{ url_for('company_applications') }}">
+                View Applications
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

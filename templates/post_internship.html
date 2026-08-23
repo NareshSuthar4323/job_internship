@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Post Internship</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('company_dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('jobs') }}">
+            Jobs
+        </a>
+
+        <a href="{{ url_for('internship') }}">
+            Internships
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="form-container">
+
+    <h1>Post an Internship</h1>
+
+    <form method="POST">
+
+        <label>Internship Title</label>
+
+        <input type="text"
+               name="title"
+               placeholder="Example: Python Development Intern"
+               required>
+
+
+        <label>Company Name</label>
+
+        <input type="text"
+               name="company"
+               placeholder="Enter company name"
+               required>
+
+
+        <label>Location</label>
+
+        <input type="text"
+               name="location"
+               placeholder="Example: Ahmedabad / Remote"
+               required>
+
+
+        <label>Duration</label>
+
+        <input type="text"
+               name="duration"
+               placeholder="Example: 6 Months">
+
+
+        <label>Stipend</label>
+
+        <input type="text"
+               name="stipend"
+               placeholder="Example: ₹10,000/month">
+
+
+        <label>Required Skills</label>
+
+        <input type="text"
+               name="skills"
+               placeholder="Example: Python, Flask, SQL">
+
+
+        <label>Internship Description</label>
+
+        <textarea name="description"
+                  rows="5"
+                  placeholder="Enter internship description"></textarea>
+
+
+        <a href="{{ url_for('post_internship') }}">
+            Post Internship
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

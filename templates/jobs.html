@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Jobs - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <a href="{{ url_for('jobs') }}">Jobs</a>
+
+        <a href="{{ url_for('internship') }}">Internships</a>
+
+        <a href="{{ url_for('login') }}">Login</a>
+
+    </div>
+
+</nav>
+
+
+<section class="page">
+
+    <h1>Available Jobs</h1>
+<form method="GET"
+      action="{{ url_for('jobs') }}"
+      class="filter-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search job title..."
+        value="{{ search }}"
+    >
+
+    <input
+        type="text"
+        name="location"
+        placeholder="Location..."
+        value="{{ location }}"
+    >
+
+    <input
+        type="text"
+        name="skills"
+        placeholder="Skills..."
+        value="{{ skills }}"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+    <a href="{{ url_for('jobs') }}">
+        Clear
+    </a>
+
+</form>
+    <div class="job-container">
+
+        {% if jobs %}
+
+            {% for job in jobs %}
+
+            <div class="job-card">
+
+                <h2>{{ job["title"] }}</h2>
+
+                <p>
+                    <strong>Company:</strong>
+                    {{ job["company"] }}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ job["location"] }}
+                </p>
+
+                <p>
+                    <strong>Salary:</strong>
+                    {{ job["salary"] }}
+                </p>
+
+                <p>
+                    <strong>Skills:</strong>
+                    {{ job["skills"] }}
+                </p>
+
+                <p>
+                    {{ job["description"] }}
+                </p>
+
+                <a href="{{ url_for('job_details', job_id=job['id']) }}"
+                    class="details-btn">
+
+                    View Details
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No jobs available right now.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+</body>
+</html>

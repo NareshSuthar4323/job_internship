@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h1>Login</h1>
+
+    <form method="POST">
+
+        <label>Email</label>
+
+        <input type="email"
+               name="email"
+               placeholder="Enter your email"
+               required>
+
+
+        <label>Password</label>
+
+        <input type="password"
+               name="password"
+               placeholder="Enter your password"
+               required>
+
+
+        <label>Login As</label>
+
+        <select name="role" required>
+
+            <option value="student">
+                Student
+            </option>
+
+            <option value="company">
+                Company
+            </option>
+
+            <option value="admin">
+                Admin
+            </option>
+
+        </select>
+
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+
+    <p>
+        Don't have an account?
+
+        <a href="{{ url_for('register') }}">
+            Register
+        </a>
+    </p>
+
+</div>
+
+</body>
+</html>

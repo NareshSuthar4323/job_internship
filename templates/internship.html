@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Internships - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <a href="{{ url_for('jobs') }}">Jobs</a>
+
+        <a href="{{ url_for('internship') }}">Internships</a>
+
+        <a href="{{ url_for('login') }}">Login</a>
+
+    </div>
+
+</nav>
+
+
+<section class="page">
+
+    <h1>Available Internships</h1>
+<form method="GET"
+      action="{{ url_for('internship') }}"
+      class="filter-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search internship..."
+        value="{{ search }}"
+    >
+
+    <input
+        type="text"
+        name="location"
+        placeholder="Location..."
+        value="{{ location }}"
+    >
+
+    <input
+        type="text"
+        name="skills"
+        placeholder="Skills..."
+        value="{{ skills }}"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+    <a href="{{ url_for('internship') }}">
+        Clear
+    </a>
+
+</form>
+    <div class="job-container">
+
+        {% if internships %}
+
+            {% for internship in internships %}
+
+            <div class="job-card">
+
+                <h2>{{ internship["title"] }}</h2>
+
+                <p>
+                    <strong>Company:</strong>
+                    {{ internship["company"] }}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ internship["location"] }}
+                </p>
+
+                <p>
+                    <strong>Duration:</strong>
+                    {{ internship["duration"] }}
+                </p>
+
+                <p>
+                    <strong>Stipend:</strong>
+                    {{ internship["stipend"] }}
+                </p>
+
+                <p>
+                    <strong>Skills:</strong>
+                    {{ internship["skills"] }}
+                </p>
+
+                <p>
+                    {{ internship["description"] }}
+                </p>
+
+               <a href="{{ url_for(
+                'internship_details',
+                 internship_id=internship['id']
+                    ) }}"
+                 class="details-btn">
+
+                     View Details
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No internships available right now.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+</body>
+</html>

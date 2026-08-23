@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Applications - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('company_dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('jobs') }}">
+            Jobs
+        </a>
+
+        <a href="{{ url_for('internship') }}">
+            Internships
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+    <h1>Student Applications</h1>
+
+
+    {% if applications %}
+
+        <div class="job-container">
+
+            {% for application in applications %}
+
+            <div class="job-card">
+
+                <h2>
+                    {{ application["student_name"] }}
+                </h2>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ application["student_email"] }}
+                </p>
+
+
+                {% if application["job_title"] %}
+
+                    <p>
+                        <strong>Applied For:</strong>
+                        {{ application["job_title"] }}
+                    </p>
+
+                    <p>
+                        <strong>Type:</strong>
+                        Job
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        <strong>Applied For:</strong>
+                        {{ application["internship_title"] }}
+                    </p>
+
+                    <p>
+                        <strong>Type:</strong>
+                        Internship
+                    </p>
+
+                {% endif %}
+
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ application["status"] }}
+                </p>
+
+                <p>
+                    <strong>Applied Date:</strong>
+                    {{ application["applied_date"] }}
+                </p>
+
+
+                {% if application["status"] == "Pending" %}
+
+                    <div class="application-buttons">
+
+                        <form method="POST"
+                              action="{{ url_for(
+                                  'update_application',
+                                  application_id=application['id'],
+                                  status='Accepted'
+                              ) }}">
+
+                            <button type="submit">
+                                Accept
+                            </button>
+
+                        </form>
+
+
+                        <form method="POST"
+                              action="{{ url_for(
+                                  'update_application',
+                                  application_id=application['id'],
+                                  status='Rejected'
+                              ) }}">
+
+                            <button type="submit">
+                                Reject
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        Application has already been processed.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p>
+            No applications received yet.
+        </p>
+
+    {% endif %}
+
+</section>
+
+</body>
+</html>

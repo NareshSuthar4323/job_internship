@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusConnect
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('index') }}">Home</a>
+
+            <a href="{{ url_for('jobs') }}">Jobs</a>
+
+            <a href="{{ url_for('internship') }}">Internships</a>
+
+            <a href="{{ url_for('login') }}">Login</a>
+
+            <a href="{{ url_for('register') }}"
+               class="register-btn">
+               Register
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Find Your Dream Job & Internship
+        </h1>
+
+        <p>
+            CampusConnect connects students with
+            companies and opportunities.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('jobs') }}"
+               class="btn">
+               Explore Jobs
+            </a>
+
+            <a href="{{ url_for('internship') }}"
+               class="btn secondary">
+               Find Internships
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <h2>Why CampusConnect?</h2>
+
+    <div class="feature-container">
+
+        <div class="feature-card">
+            <h3>💼 Jobs</h3>
+            <p>
+                Find suitable job opportunities
+                according to your skills.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🎓 Internships</h3>
+            <p>
+                Discover internships and
+                gain practical experience.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📩 Easy Apply</h3>
+            <p>
+                Apply for jobs and internships
+                easily from one platform.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 CampusConnect | Jobs & Internship Portal
+    </p>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect Admin
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+    <h1>Admin Dashboard</h1>
+
+
+    <!-- STATISTICS -->
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+
+            <h2>👨‍🎓 Students</h2>
+
+            <h3>{{ students|length }}</h3>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>🏢 Companies</h2>
+
+            <h3>{{ companies|length }}</h3>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>💼 Jobs</h2>
+
+            <h3>{{ jobs|length }}</h3>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>🎓 Internships</h2>
+
+            <h3>{{ internships|length }}</h3>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>📩 Applications</h2>
+
+            <h3>{{ applications|length }}</h3>
+
+        </div>
+
+    </div>
+
+
+    <!-- STUDENTS -->
+
+    <div class="admin-section">
+
+        <h2>Registered Students</h2>
+
+        {% if students %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>{{ student["id"] }}</td>
+
+                    <td>{{ student["name"] }}</td>
+
+                    <td>{{ student["email"] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p>No students registered.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- COMPANIES -->
+
+    <div class="admin-section">
+
+        <h2>Registered Companies</h2>
+
+        {% if companies %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                </tr>
+
+                {% for company in companies %}
+
+                <tr>
+
+                    <td>{{ company["id"] }}</td>
+
+                    <td>{{ company["name"] }}</td>
+
+                    <td>{{ company["email"] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p>No companies registered.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- JOBS -->
+
+    <div class="admin-section">
+
+        <h2>Jobs</h2>
+
+        {% if jobs %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for job in jobs %}
+
+                <tr>
+
+                    <td>{{ job["title"] }}</td>
+
+                    <td>{{ job["company"] }}</td>
+
+                    <td>{{ job["location"] }}</td>
+
+                    <td>
+
+                        <form method="POST"
+                              action="{{ url_for(
+                                  'delete_job',
+                                  job_id=job['id']
+                              ) }}">
+
+                            <button type="submit"
+                                    onclick="return confirm(
+                                    'Delete this job?')">
+
+                                Delete
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p>No jobs available.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- INTERNSHIPS -->
+
+    <div class="admin-section">
+
+        <h2>Internships</h2>
+
+        {% if internships %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for internship in internships %}
+
+                <tr>
+
+                    <td>{{ internship["title"] }}</td>
+
+                    <td>{{ internship["company"] }}</td>
+
+                    <td>{{ internship["location"] }}</td>
+
+                    <td>
+
+                        <form method="POST"
+                              action="{{ url_for(
+                                  'delete_internship',
+                                  internship_id=internship['id']
+                              ) }}">
+
+                            <button type="submit"
+                                    onclick="return confirm(
+                                    'Delete this internship?')">
+
+                                Delete
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p>No internships available.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- APPLICATIONS -->
+
+    <div class="admin-section">
+
+        <h2>Applications</h2>
+
+        {% if applications %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Email</th>
+                    <th>Applied For</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+
+                {% for application in applications %}
+
+                <tr>
+
+                    <td>
+                        {{ application["student_name"] }}
+                    </td>
+
+                    <td>
+                        {{ application["student_email"] }}
+                    </td>
+
+                    <td>
+
+                        {% if application["job_title"] %}
+
+                            {{ application["job_title"] }}
+
+                        {% else %}
+
+                            {{ application["internship_title"] }}
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+                        {{ application["status"] }}
+                    </td>
+
+                    <td>
+                        {{ application["applied_date"] }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p>No applications yet.</p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+</body>
+</html>

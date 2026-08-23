@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <a href="{{ url_for('jobs') }}">Jobs</a>
+
+        <a href="{{ url_for('internship') }}">
+            Internships
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+    <h1>Welcome, {{ user_name }}</h1>
+
+    <h2>My Applications</h2>
+
+    {% if applications %}
+
+        <div class="job-container">
+
+            {% for application in applications %}
+
+            <div class="job-card">
+
+                {% if application["job_title"] %}
+
+                    <h2>
+                        {{ application["job_title"] }}
+                    </h2>
+
+                    <p>
+                        <strong>Type:</strong> Job
+                    </p>
+
+                {% else %}
+
+                    <h2>
+                        {{ application["internship_title"] }}
+                    </h2>
+
+                    <p>
+                        <strong>Type:</strong> Internship
+                    </p>
+
+                {% endif %}
+
+
+                <p>
+                    <strong>Company:</strong>
+                    {{ application["company"] }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ application["status"] }}
+                </p>
+
+                <p>
+                    <strong>Applied Date:</strong>
+                    {{ application["applied_date"] }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p>
+            You have not applied for any jobs or internships yet.
+        </p>
+
+    {% endif %}
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post Job</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('company_dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('jobs') }}">
+            Jobs
+        </a>
+
+        <a href="{{ url_for('internship') }}">
+            Internships
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="form-container">
+
+    <h1>Post a Job</h1>
+
+    <form method="POST">
+
+        <label>Job Title</label>
+
+        <input type="text"
+               name="title"
+               placeholder="Example: Software Developer"
+               required>
+
+
+        <label>Company Name</label>
+
+        <input type="text"
+               name="company"
+               placeholder="Enter company name"
+               required>
+
+
+        <label>Location</label>
+
+        <input type="text"
+               name="location"
+               placeholder="Example: Ahmedabad"
+               required>
+
+
+        <label>Salary</label>
+
+        <input type="text"
+               name="salary"
+               placeholder="Example: ₹4 - ₹6 LPA">
+
+
+        <label>Required Skills</label>
+
+        <input type="text"
+               name="skills"
+               placeholder="Example: Python, Flask, SQL">
+
+
+        <label>Job Description</label>
+
+        <textarea name="description"
+                  rows="5"
+                  placeholder="Enter job description"></textarea>
+
+
+        <button type="submit">
+            Post Job
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ job["title"] }} - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <a href="{{ url_for('jobs') }}">Jobs</a>
+
+        <a href="{{ url_for('internship') }}">
+            Internships
+        </a>
+
+        <a href="{{ url_for('login') }}">Login</a>
+
+    </div>
+
+</nav>
+
+
+<section class="details-container">
+
+    <div class="details-card">
+
+        <h1>{{ job["title"] }}</h1>
+
+        <h2>{{ job["company"] }}</h2>
+
+        <p>
+            <strong>📍 Location:</strong>
+            {{ job["location"] }}
+        </p>
+
+        <p>
+            <strong>💰 Salary:</strong>
+            {{ job["salary"] }}
+        </p>
+
+        <p>
+            <strong>🛠 Skills:</strong>
+            {{ job["skills"] }}
+        </p>
+
+        <hr>
+
+        <h3>Job Description</h3>
+
+        <p>
+            {{ job["description"] }}
+        </p>
+
+
+        <form method="POST"
+              action="{{ url_for(
+                  'apply_job',
+                  job_id=job['id']
+              ) }}">
+
+            <button type="submit">
+                Apply Now
+            </button>
+
+        </form>
+
+
+        <br>
+
+        <a href="{{ url_for('jobs') }}">
+            ← Back to Jobs
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

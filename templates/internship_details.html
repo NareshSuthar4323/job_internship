@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ internship["title"] }} - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CampusConnect
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <a href="{{ url_for('jobs') }}">Jobs</a>
+
+        <a href="{{ url_for('internship') }}">
+            Internships
+        </a>
+
+        <a href="{{ url_for('login') }}">Login</a>
+
+    </div>
+
+</nav>
+
+
+<section class="details-container">
+
+    <div class="details-card">
+
+        <h1>
+            {{ internship["title"] }}
+        </h1>
+
+        <h2>
+            {{ internship["company"] }}
+        </h2>
+
+        <p>
+            <strong>📍 Location:</strong>
+            {{ internship["location"] }}
+        </p>
+
+        <p>
+            <strong>⏳ Duration:</strong>
+            {{ internship["duration"] }}
+        </p>
+
+        <p>
+            <strong>💰 Stipend:</strong>
+            {{ internship["stipend"] }}
+        </p>
+
+        <p>
+            <strong>🛠 Skills:</strong>
+            {{ internship["skills"] }}
+        </p>
+
+        <hr>
+
+        <h3>Internship Description</h3>
+
+        <p>
+            {{ internship["description"] }}
+        </p>
+
+
+        <form method="POST"
+              action="{{ url_for(
+                  'apply_internship',
+                  internship_id=internship['id']
+              ) }}">
+
+            <button type="submit">
+                Apply Now
+            </button>
+
+        </form>
+
+
+        <br>
+
+        <a href="{{ url_for('internship') }}">
+            ← Back to Internships
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+</html>
