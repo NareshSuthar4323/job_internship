@@ -3,9 +3,9 @@ import sqlite3
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = "campusconnect_secret_key"
+app.secret_key = "careerconnect_secret_key"
 
-DATABASE = "campus_connect.db"
+DATABASE = "career_connect.db"
 
 
 # ---------------- DATABASE CONNECTION ----------------
